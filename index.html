@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#f5f5f7">
+    <meta name="apple-mobile-web-app-title" content="中考倒计时">
+    <!-- 设置页面标题 -->
+    <title>知识纸条倒计时</title>
+    <!-- 链接到外部CSS样式表 -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- 添加快捷图标，支持各种设备 -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23007aff%22 /><text y=%22.9em%22 font-size=%2275%22 x=%2220%22 fill=%22white%22>📅</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23007aff%22 /><text y=%22.9em%22 font-size=%2275%22 x=%2220%22 fill=%22white%22>📅</text></svg>">
+    <!-- Web Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- iOS 特定的标签 -->
+    <link rel="apple-touch-startup-image" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23007aff%22 /><text y=%22.9em%22 font-size=%2275%22 x=%2220%22 fill=%22white%22>📅</text></svg>">
+    
+    <!-- 添加到主屏幕指引 -->
+    <style>
+        #add-to-home {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            text-align: center;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            animation: bounce 2s infinite;
+            font-size: 14px;
+            max-width: 90%;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+        
+        /* 日期选择器样式 */
+        .date-picker-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .date-picker {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 14px;
+            width: 300px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(20px);
+        }
+        
+        .date-picker-header {
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .date-picker-content {
+            padding: 15px;
+        }
+        
+        .date-picker-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .date-picker-inputs select {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.9);
+            appearance: none;
+            text-align: center;
+        }
+        
+        .date-picker-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        
+        .date-picker-buttons button {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        
+        .date-picker-cancel {
+            background-color: rgba(0, 0, 0, 0.1);
+            color: #007aff;
+        }
+        
+        .date-picker-save {
+            background-color: #007aff;
+            color: white;
+        }
+        
+        .edit-date-button {
+            background-color: transparent;
+            border: 1px solid rgba(0, 122, 255, 0.5);
+            color: #007aff;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 13px;
+            cursor: pointer;
+            margin-top: 10px;
+            display: inline-block;
+            transition: all 0.2s;
+        }
+        
+        .edit-date-button:hover {
+            background-color: rgba(0, 122, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- 添加到主屏幕提示 -->
+    <div id="add-to-home">
+        点击 <span id="install-hint">⋮</span> 然后选择"添加到主屏幕"，获得更好体验！
+        <a href="install-guide.html" style="color: white; text-decoration: underline; margin-left: 5px;">查看教程</a>
+        <button id="close-hint" style="background: none; border: none; color: white; margin-left: 10px;">✕</button>
+    </div>
+    
+    <!-- 日期选择器 -->
+    <div class="date-picker-container" id="date-picker-container">
+        <div class="date-picker">
+            <div class="date-picker-header">设置中考日期</div>
+            <div class="date-picker-content">
+                <div class="date-picker-inputs">
+                    <select id="exam-year">
+                        <!-- 年份将由JS动态填充 -->
+                    </select>
+                    <select id="exam-month">
+                        <option value="0">1月</option>
+                        <option value="1">2月</option>
+                        <option value="2">3月</option>
+                        <option value="3">4月</option>
+                        <option value="4">5月</option>
+                        <option value="5">6月</option>
+                        <option value="6">7月</option>
+                        <option value="7">8月</option>
+                        <option value="8">9月</option>
+                        <option value="9">10月</option>
+                        <option value="10">11月</option>
+                        <option value="11">12月</option>
+                    </select>
+                    <select id="exam-day">
+                        <!-- 日期将由JS动态填充 -->
+                    </select>
+                </div>
+                <div class="date-picker-buttons">
+                    <button class="date-picker-cancel" id="date-picker-cancel">取消</button>
+                    <button class="date-picker-save" id="date-picker-save">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 主容器 -->
+    <div class="container">
+        <!-- 倒计时部分 -->
+        <div class="countdown-section">
+            <div class="app-title">知识纸条倒计时</div>
+            <h1>距离中考还有</h1>
+            <div class="countdown" id="countdown">
+                <span id="days">--</span>
+                <span class="unit">天</span>
+            </div>
+            <p class="current-date" id="current-date">当前日期: --</p>
+            <button class="edit-date-button" id="edit-date-button">修改考试日期</button>
+        </div>
+        
+        <!-- 右侧内容部分 -->
+        <div class="content-section">
+            <!-- 励志名言部分 -->
+            <div class="quote-section">
+                <p id="motivational-quote">加载中...</p>
+            </div>
+            
+            <!-- 学科选择部分 -->
+            <div class="subject-selector">
+                <div class="selector-header">
+                    <h3>显示学科</h3>
+                    <div class="select-buttons">
+                        <button id="select-all" class="select-btn">全选</button>
+                        <button id="deselect-all" class="select-btn">取消全选</button>
+                    </div>
+                </div>
+                <div class="selector-options">
+                    <label class="subject-option"><input type="checkbox" name="subject" value="chinese" checked> 语文</label>
+                    <label class="subject-option"><input type="checkbox" name="subject" value="math" checked> 数学</label>
+                    <label class="subject-option"><input type="checkbox" name="subject" value="english" checked> 英语</label>
+                    <label class="subject-option"><input type="checkbox" name="subject" value="physics" checked> 物理</label>
+                    <label class="subject-option"><input type="checkbox" name="subject" value="chemistry" checked> 化学</label>
+                    <label class="subject-option"><input type="checkbox" name="subject" value="politics" checked> 政治</label>
+                    <label class="subject-option"><input type="checkbox" name="subject" value="history" checked> 历史</label>
+                </div>
+            </div>
+            
+            <!-- 每日知识点部分 -->
+            <div class="knowledge-section" id="knowledge-container">
+                <div class="knowledge-item" data-subject="chinese">
+                    <h3>语文知识点</h3>
+                    <p id="chinese-knowledge">加载中...</p>
+                </div>
+                <div class="knowledge-item" data-subject="math">
+                    <h3>数学知识点</h3>
+                    <p id="math-knowledge">加载中...</p>
+                </div>
+                <div class="knowledge-item" data-subject="english">
+                    <h3>英语知识点</h3>
+                    <p id="english-knowledge">加载中...</p>
+                </div>
+                <div class="knowledge-item" data-subject="physics">
+                    <h3>物理知识点</h3>
+                    <p id="physics-knowledge">加载中...</p>
+                </div>
+                <div class="knowledge-item" data-subject="chemistry">
+                    <h3>化学知识点</h3>
+                    <p id="chemistry-knowledge">加载中...</p>
+                </div>
+                <div class="knowledge-item" data-subject="politics">
+                    <h3>政治知识点</h3>
+                    <p id="politics-knowledge">加载中...</p>
+                </div>
+                <div class="knowledge-item" data-subject="history">
+                    <h3>历史知识点</h3>
+                    <p id="history-knowledge">加载中...</p>
+                </div>
+            </div>
+            
+            <!-- 开发者信息 -->
+            <div class="developer-info">开发者：教地理的班主任</div>
+        </div>
+    </div>
+    
+    <!-- 引入JavaScript文件 -->
+    <script src="script.js"></script>
+    
+    <!-- 注册 Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+    </script>
+</body>
+</html> 

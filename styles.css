@@ -1,0 +1,1112 @@
+/* 重置所有元素的默认样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent; /* 禁用点击时的黑色圆圈 */
+    outline: none; /* 移除点击时的轮廓 */
+}
+
+/* 设置基本页面样式 */
+body {
+    font-family: "SF Pro Text", "San Francisco", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background-color: #f5f5f7;
+    color: #1d1d1f;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: normal;
+}
+
+/* 主容器样式 */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    min-height: 85vh;
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    display: flex;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* 倒计时部分样式 - 减小到35%宽度 */
+.countdown-section {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    background-color: rgba(242, 242, 247, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* 调整倒计时文字大小 */
+.countdown {
+    font-size: 110px;
+    font-weight: 700;
+    color: #007aff;
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+/* 调整单位文字大小 */
+.unit {
+    font-size: 40px;
+    font-weight: 600;
+    margin-left: 12px;
+}
+
+/* 调整标题大小 */
+h1 {
+    font-size: 32px;
+    font-weight: 600;
+    color: #1d1d1f;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+    text-align: center;
+}
+
+/* 当前日期样式 */
+.current-date {
+    font-size: 18px;
+    font-weight: 500;
+    color: #6e6e73;
+    margin-top: 25px;
+}
+
+/* 右侧内容部分 - 增加到65%宽度 */
+.content-section {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* 只在内容超出时提供滚动 */
+    max-height: 100%;
+}
+
+/* 自定义滚动条 */
+.content-section::-webkit-scrollbar {
+    width: 8px;
+}
+
+.content-section::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 4px;
+}
+
+.content-section::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+}
+
+.content-section::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+/* 励志名言部分 */
+.quote-section {
+    border-radius: 0;
+    min-height: 70px;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* 励志名言文字样式 */
+#motivational-quote {
+    font-size: 28px;
+    font-weight: 600;
+    text-align: center;
+    color: #1d1d1f;
+    line-height: 1.4;
+    letter-spacing: -0.4px;
+    padding: 0 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+/* 根据文本长度动态调整字号的类 */
+#motivational-quote.medium-length {
+    font-size: 24px;
+}
+
+#motivational-quote.long-length {
+    font-size: 20px;
+}
+
+/* 学科选择器部分 */
+.subject-selector {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 14px;
+    padding: 15px;
+    margin-top: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* 选择器标题部分 */
+.selector-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.selector-header h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1d1d1f;
+}
+
+/* 选择按钮容器 */
+.select-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.select-btn {
+    padding: 5px 10px;
+    background-color: #007aff;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+/* 选择项样式 */
+.selector-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    row-gap: 8px;
+}
+
+.subject-option {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #1d1d1f;
+    margin-right: 0;
+    cursor: pointer;
+    font-weight: 500;
+    user-select: none;
+    transition: transform 0.2s ease;
+}
+
+.subject-option:active {
+    transform: scale(0.97);
+}
+
+.subject-option input {
+    margin-right: 5px;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #c7c7cc;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s;
+}
+
+.subject-option input:checked {
+    background-color: #007aff;
+    border-color: #007aff;
+}
+
+.subject-option input:checked::after {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: white;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* 知识点部分 */
+.knowledge-section {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    max-height: calc(100% - 280px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    border-radius: 12px;
+    padding: 12px;
+    background-color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.knowledge-section::-webkit-scrollbar {
+    width: 6px;
+}
+
+.knowledge-section::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+.knowledge-section::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+}
+
+.knowledge-section::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.knowledge-item {
+    background-color: rgba(248, 248, 250, 0.8);
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.knowledge-item.hidden {
+    display: none;
+}
+
+/* 知识点标题样式 */
+.knowledge-item h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #007aff;
+    margin-bottom: 12px;
+    letter-spacing: -0.2px;
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+}
+
+/* 知识点容器样式 */
+.knowledge-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+}
+
+/* 独立知识点块样式 */
+.knowledge-block {
+    background-color: rgba(245, 245, 247, 0.8);
+    border-radius: 14px;
+    padding: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+.knowledge-block:hover {
+    background-color: rgba(232, 244, 255, 0.8);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.1);
+}
+
+.knowledge-block:active {
+    transform: scale(0.99);
+    background-color: rgba(220, 240, 255, 0.9);
+}
+
+/* 知识点内容样式 */
+.knowledge-point {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #1d1d1f;
+    margin: 0;
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 10px;
+}
+
+/* 知识点编号样式 */
+.knowledge-point:before {
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    content: "";
+    width: 7px;
+    height: 7px;
+    background-color: #1d1d1f;
+    border-radius: 50%;
+    display: block;
+}
+
+/* 最后一个知识点无底部边距 */
+.knowledge-point:last-child {
+    margin-bottom: 0;
+}
+
+/* 移除不再需要的Tab样式 */
+.tabs, .tab-btn, .knowledge-content {
+    display: none;
+}
+
+/* 移动设备类 */
+body.mobile-device {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+/* 触摸反馈效果 */
+.touch-active {
+    opacity: 0.7;
+    transform: scale(0.98);
+}
+
+/* 知识点块高亮效果 */
+.knowledge-block.active {
+    background-color: #e0f2ff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
+}
+
+/* 展开/折叠效果 */
+.knowledge-item.expanded {
+    background-color: rgba(240, 249, 255, 0.8);
+}
+
+/* 折叠/展开按钮样式 */
+.knowledge-item.collapsed h3::after {
+    content: "▼ 展开";
+    font-size: 13px;
+    font-weight: 500;
+    color: #007aff;
+    position: absolute;
+    right: 0;
+    transition: transform 0.3s;
+    background-color: rgba(0, 122, 255, 0.1);
+    padding: 4px 10px;
+    border-radius: 12px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.knowledge-item.expanded h3::after {
+    content: "▲ 收起";
+    font-size: 13px;
+    font-weight: 500;
+    color: #007aff;
+    position: absolute;
+    right: 0;
+    transition: transform 0.3s;
+    background-color: rgba(0, 122, 255, 0.1);
+    padding: 4px 10px;
+    border-radius: 12px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.knowledge-item h3:active::after {
+    background-color: rgba(0, 122, 255, 0.2);
+    transform: scale(0.97);
+}
+
+/* 刷新指示器动画 */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#refresh-indicator::before {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid white;
+    border-top-color: transparent;
+    border-radius: 50%;
+    margin-right: 8px;
+    animation: spin 1s linear infinite;
+}
+
+/* 应用标题样式 */
+.app-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #007aff;
+    margin-bottom: 15px;
+    letter-spacing: -0.3px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.app-title:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 3px;
+    background-color: #007aff;
+    border-radius: 1.5px;
+}
+
+/* 移动设备响应式设计 */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+        min-height: 0;
+        width: 95%;
+        max-width: 450px;
+    }
+    
+    .countdown-section {
+        width: 100%;
+        padding: 25px 15px;
+        border-radius: 20px 20px 0 0;
+    }
+    
+    .content-section {
+        width: 100%;
+        border-radius: 0 0 20px 20px;
+        padding-bottom: 20px;
+    }
+    
+    .countdown {
+        font-size: 90px;
+        margin: 15px 0;
+    }
+    
+    .unit {
+        font-size: 34px;
+        margin-left: 10px;
+    }
+    
+    h1 {
+        font-size: 28px;
+        margin-bottom: 15px;
+    }
+    
+    .current-date {
+        font-size: 16px;
+        margin-top: 15px;
+    }
+    
+    .quote-section {
+        min-height: 60px;
+        padding: 12px 10px;
+    }
+    
+    #motivational-quote {
+        font-size: 24px;
+    }
+    
+    #motivational-quote.medium-length {
+        font-size: 22px;
+    }
+    
+    #motivational-quote.long-length {
+        font-size: 18px;
+        white-space: normal;
+    }
+    
+    .selector-options {
+        gap: 8px;
+    }
+    
+    .subject-option {
+        font-size: 14px;
+    }
+    
+    .knowledge-item {
+        margin-bottom: 10px;
+        padding: 12px;
+    }
+    
+    .knowledge-point {
+        font-size: 15px;
+        padding-left: 22px;
+    }
+    
+    .knowledge-point:before {
+        left: 6px;
+        top: 8px;
+        width: 6px;
+        height: 6px;
+    }
+    
+    .app-title {
+        font-size: 22px;
+        margin-bottom: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .countdown {
+        font-size: 70px;
+    }
+    
+    .unit {
+        font-size: 28px;
+    }
+    
+    h1 {
+        font-size: 24px;
+    }
+    
+    .current-date {
+        font-size: 15px;
+    }
+    
+    #motivational-quote {
+        font-size: 20px;
+    }
+    
+    #motivational-quote.medium-length {
+        font-size: 18px;
+    }
+    
+    #motivational-quote.long-length {
+        font-size: 16px;
+    }
+    
+    .knowledge-section {
+        margin-bottom: 15px;
+    }
+    
+    .selector-options {
+        gap: 6px;
+    }
+    
+    .subject-option {
+        font-size: 13px;
+    }
+    
+    .knowledge-item {
+        padding: 10px;
+    }
+    
+    .knowledge-point {
+        font-size: 14px;
+        padding-left: 18px;
+        margin-bottom: 6px;
+    }
+    
+    .knowledge-point:before {
+        left: 5px;
+        top: 7px;
+        width: 5px;
+        height: 5px;
+    }
+    
+    .app-title {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+}
+
+/* 触屏设备的适配 */
+@media (hover: none) and (pointer: coarse) {
+    button, a, .subject-option, .knowledge-block, .knowledge-item h3 {
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .select-btn {
+        padding: 10px 15px;
+        min-height: 44px;
+    }
+    
+    .select-btn:active {
+        background-color: #0063ce;
+        transform: scale(0.97);
+    }
+    
+    .subject-option {
+        min-height: 44px;
+    }
+    
+    .subject-option input {
+        transform: scale(1.1);
+    }
+}
+
+/* 添加到主屏幕提示样式优化 */
+#add-to-home {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    text-align: center;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    animation: bounce 2s infinite;
+    font-size: 14px;
+    max-width: 90%;
+}
+
+#close-hint {
+    background: none;
+    border: none;
+    color: white;
+    margin-left: 10px;
+    font-size: 16px;
+    padding: 0 5px;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+#close-hint:hover {
+    opacity: 1;
+}
+
+/* 深色模式支持 */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1d1d1f;
+        color: #f5f5f7;
+    }
+    
+    .container {
+        background-color: rgba(40, 40, 45, 0.8);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .countdown-section {
+        background-color: rgba(30, 30, 35, 0.6);
+    }
+    
+    h1 {
+        color: #f5f5f7;
+    }
+    
+    .current-date {
+        color: #a1a1a6;
+    }
+    
+    .quote-section {
+        background-color: rgba(30, 30, 35, 0.6);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    #motivational-quote {
+        color: #f5f5f7;
+    }
+    
+    .subject-selector {
+        background-color: rgba(30, 30, 35, 0.7);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .selector-header h3 {
+        color: #f5f5f7;
+    }
+    
+    .subject-option {
+        color: #f5f5f7;
+    }
+    
+    .subject-option input {
+        border-color: #48484a;
+    }
+    
+    .knowledge-section {
+        background-color: rgba(30, 30, 35, 0.6);
+    }
+    
+    .knowledge-item {
+        background-color: rgba(40, 40, 45, 0.8);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .knowledge-block {
+        background-color: rgba(50, 50, 55, 0.8);
+        border-color: rgba(255, 255, 255, 0.08);
+    }
+    
+    .knowledge-block:hover {
+        background-color: rgba(0, 64, 123, 0.2);
+    }
+    
+    .knowledge-point {
+        color: #f5f5f7;
+    }
+    
+    .knowledge-item.expanded {
+        background-color: rgba(0, 64, 123, 0.2);
+    }
+    
+    .content-section::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+    }
+    
+    .content-section::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .content-section::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    .knowledge-point:before {
+        background-color: #f5f5f7;
+        box-shadow: 0 0 3px rgba(255, 255, 255, 0.3);
+    }
+    
+    .app-title {
+        color: #0A84FF;
+    }
+    
+    .app-title:after {
+        background-color: #0A84FF;
+    }
+    
+    .developer-info {
+        color: #6e6e73;
+    }
+}
+
+/* 设置 body 和 html 样式 */
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    font-family: "SF Pro Text", "San Francisco", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background-color: #f5f5f7;
+    color: #1d1d1f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: normal;
+}
+
+/* 开发者信息样式 */
+.developer-info {
+    font-size: 12px;
+    color: #8e8e93;
+    text-align: center;
+    padding: 5px 0;
+    margin-top: auto;
+    margin-bottom: 10px;
+    font-weight: 400;
+    opacity: 0.8;
+    width: 100%;
+}
+
+/* 移动设备适配 */
+@media (max-width: 768px) {
+    .developer-info {
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
+}
+
+/* 深色模式适配 */
+@media (prefers-color-scheme: dark) {
+    .developer-info {
+        background-color: rgba(30, 30, 35, 0.8);
+    }
+}
+
+/* 壁纸模式特定样式 */
+body.wallpaper-mode {
+    background: transparent !important;
+    overflow: hidden;
+}
+
+.wallpaper-mode .container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.wallpaper-mode .countdown-section {
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.wallpaper-mode .content-section {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.wallpaper-mode .knowledge-item {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.wallpaper-mode .quote-section {
+    color: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.wallpaper-mode .subject-selector {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.wallpaper-mode .subject-option {
+    color: #ffffff;
+}
+
+.wallpaper-mode .edit-date-button {
+    display: none;
+}
+
+.wallpaper-mode #add-to-home {
+    display: none;
+}
+
+/* 浏览器壁纸模式样式 */
+body.browser-wallpaper {
+    background: transparent !important;
+    overflow: hidden;
+}
+
+.browser-wallpaper .container {
+    background: rgba(0, 0, 0, 0.45);  /* 降低背景不透明度 */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.browser-wallpaper .countdown-section {
+    background: rgba(0, 0, 0, 0.35);  /* 降低倒计时区域背景不透明度 */
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.browser-wallpaper .countdown {
+    font-size: 110px;
+    font-weight: 700;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.browser-wallpaper .unit {
+    font-size: 40px;
+    font-weight: 600;
+    margin-left: 12px;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.browser-wallpaper h1 {
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.browser-wallpaper .current-date {
+    color: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.browser-wallpaper .content-section {
+    background: rgba(0, 0, 0, 0.35);  /* 降低内容区域背景不透明度 */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 15px;
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.browser-wallpaper .knowledge-item {
+    background: rgba(0, 0, 0, 0.25);  /* 降低知识点区域背景不透明度 */
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.browser-wallpaper .quote-section {
+    background: rgba(0, 0, 0, 0.35);  /* 降低励志名言区域背景不透明度 */
+    color: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.browser-wallpaper .subject-selector {
+    background: rgba(0, 0, 0, 0.35);  /* 降低学科选择器背景不透明度 */
+    border-radius: 10px;
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.browser-wallpaper .subject-option {
+    color: #ffffff;
+}
+
+.browser-wallpaper .selector-header h3 {
+    color: #ffffff;
+}
+
+.browser-wallpaper .select-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+}
+
+.browser-wallpaper .select-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.browser-wallpaper .knowledge-point {
+    color: #ffffff;
+}
+
+.browser-wallpaper .knowledge-point:before {
+    background-color: #ffffff;
+}
+
+.browser-wallpaper .app-title {
+    color: #ffffff;
+}
+
+.browser-wallpaper .app-title:after {
+    background-color: #ffffff;
+}
+
+.browser-wallpaper .developer-info {
+    color: #ffffff;
+}
+
+.browser-wallpaper #add-to-home {
+    display: none;
+}
+
+.browser-wallpaper #motivational-quote {
+    font-size: 28px;
+    font-weight: 600;
+    text-align: center;
+    color: #ffffff;
+    line-height: 1.4;
+    letter-spacing: -0.4px;
+    padding: 0 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.browser-wallpaper #motivational-quote.medium-length {
+    font-size: 24px;
+}
+
+.browser-wallpaper #motivational-quote.long-length {
+    font-size: 20px;
+}
+
+.browser-wallpaper .edit-date-button {
+    display: inline-block !important;
+    background-color: rgba(0, 122, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 13px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.2s;
+}
+
+.browser-wallpaper .edit-date-button:hover {
+    background-color: rgba(0, 122, 255, 0.3);
+}
+
+.browser-wallpaper .date-picker {
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+.browser-wallpaper .date-picker-header {
+    color: #ffffff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.browser-wallpaper .date-picker-inputs select {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+.browser-wallpaper .date-picker-cancel {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+.browser-wallpaper .date-picker-save {
+    background-color: rgba(0, 122, 255, 0.8);
+    color: #ffffff;
+} 
